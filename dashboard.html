@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/2da1f7c415.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/reset.css">
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/8.9.1/firebase-ui-auth.css" />
+    <title>Document</title>
+</head>
+<body>
+        <div class="leftbox" id="myLeftBox">
+            <div class="logo-Web">
+                <div class="logo-item">
+                    <i class="fas fa-car"></i>
+                </div>
+                <p class="logo-txt"><span style="color:greenyellow;">Web Biển Số</span> </pc>
+            </div>
+            <div class="list-txt">
+                <a href="#" class="itemleft clickItem1 clickItem"><i class="far fa-chart-bar" class="item-list"></i>Tổng quan </a>
+                <a href="#" class="itemleft clickItem2"><i class="fa fa-users box-icon" class="item-list" style="font-size: 25px;"></i>Khách hàng</a>
+                <!-- <a href="#" class="itemleft clickItem3"><i class="fas fa-search"class="item-list"></i>Tra cứu</a> -->
+                <a href="#" class="itemleft clickItem4"><i class="fas fa-user-alt"class="item-list"></i>Profile</a>
+                <a href="#" class="itemleft clickItem5"  onclick="event.preventDefault(); signOut()"><i class="fas fa-sign-out-alt"class="item-list" id="signout"></i>Đăng xuất</a>
+            </div>
+           
+        </div>
+        
+        <div class="container-main">
+            <div id="main" >
+                <div class="head">
+                    <div class="left-head">
+                    <!--  <div class="item-nav"><i class="far fa-chart-bar"></i></div> -->
+                        <h1 class="title-list">Tổng quan</h1>
+                    
+                    </div>  
+                    
+                <!--      <div class="item-user">
+                            <i class="far fa-user-circle"></i>
+                        </div>
+                    -->
+                    
+                </div>
+                <div class="line1"></div>
+                <br>
+                <div class="head-bottom">
+
+                        <div class="box">
+                            <div class="content-box">
+                                <p>100<br/><span>Khách hàng</span></p>
+                            <i class="fa fa-users box-icon"></i>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <div class="content-box">
+                                <p>88<br/><span>Đã Thanh toán</span></p>
+                                <i class="fa fa-list box-icon"></i>
+                            </div>
+                        
+                        </div>
+
+                        <div class="box">
+                            <div class="content-box">
+                                <p>12<br/><span>Chưa thanh toán</span></p>
+                                <i class="fa fa-shopping-bag box-icon"></i>
+                            </div>  
+                        </div>
+                        <div class="box">
+                            <div class="content-box">
+                                <p>4<br/>Phương tiện phổ biến<span></span></p>
+                            <i class="fa fa-tasks box-icon" ></i>
+                            </div>
+                            
+                        </div>
+                        
+                     </div>
+                </div>
+           
+
+            <div class="line"></div>
+                <div  id="footer">
+                    <div class="chart1">
+                            <!-- Vẽ chart -->
+                            <h3>Thống kê thanh toán</h3>
+                            <div class="note">
+                                <div class="green">
+                                    <div class="cirgreen">
+
+                                    </div>
+                                    <h4>Đã Thanh Toán</h4>
+                                </div>
+                                <div class="red">
+                                    <div class="cirred">
+
+                                    </div>
+                                    <h4>Chưa Thanh Toán</h4>
+                                </div>
+
+                            </div>
+                            <div class="all">
+                                
+                                <div class="circle-wrap">
+                                    <div class="circle">
+                                            <div class="mask full-1">
+                                            <div class="fill-1"></div>
+                                            </div>
+                                            <div class="mask half">
+                                            <div class="fill-1"></div>
+                                            </div>
+                                            <div class="inside-circle"> 65% </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="chart2">
+                       <div class="charttop">
+                            <table class="box-topU">
+                                <tr class="txt-topU">
+                                    <th>USERS</th>
+                                </tr>
+                                <tr class="title-topU">
+                                    <td class="chart2U">User Name</td>
+                                    <td>Total Client</td>
+                                </tr>
+                            </table>
+                            <table class="list-top-user">
+                              
+                                <!-- <tr class="get-db-topU">
+                                    <td class="chart2U">user1</td>
+                                    <td>1</td>
+                                </tr> -->
+                            </table>
+                       </div>
+                            
+                    </div>
+                  
+                    
+                </div>
+        </div>
+        <div >
+            <!-- <img class="imageURL" src="https://firebasestorage.googleapis.com/v0/b/thu-phi-do-xe-29b78.appspot.com/o/bien_so%2F2022-04-28%2011%3A19?alt=media&token=627d65e5-a89c-4d5d-9a33-fc5a74279815 " alt=""> -->
+        </div>
+       <!-- Vẽ chart -->
+   
+      <!-- Firebase -->
+      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+   
+      <script>
+        //    var firebaseConfig = {
+        //       apiKey: "AIzaSyCHRUEWCBUcFyqLkFqARDr4FEeulKQmZTo",
+        //       authDomain: "license-plate-e43f5.firebaseapp.com",
+        //       databaseURL: "https://license-plate-e43f5-default-rtdb.firebaseio.com",
+        //       projectId: "license-plate-e43f5",
+        //       storageBucket: "license-plate-e43f5.appspot.com",
+        //       messagingSenderId: "934388900330",
+        //       appId: "1:934388900330:web:7ba5b96935fceab4279293",
+        //       measurementId: "G-6G1VJ3X9ZY"
+        //   };
+
+        const firebaseConfig = {
+        apiKey: "AIzaSyCZ1q9PstgO7K9loJnAEEd3TWqevBM3L70",
+        authDomain: "thu-phi-do-xe-29b78.firebaseapp.com",
+        databaseURL: "https://thu-phi-do-xe-29b78-default-rtdb.firebaseio.com",
+        projectId: "thu-phi-do-xe-29b78",
+        storageBucket: "thu-phi-do-xe-29b78.appspot.com",
+        messagingSenderId: "465302228955",
+        appId: "1:465302228955:web:0cec0da7104afd1be261fe",
+        measurementId: "G-CHRVEKR8RS"
+        };
+
+          // Initialize Firebase
+          firebase.initializeApp(firebaseConfig);
+          // Get a reference to the database service
+
+          var currentUser=null;
+          //Function
+
+        /*   function getUsername(){
+              currentUser=JSON.parse(sessionStorage.getItem('user'));
+          } */
+          function signOut(){
+              localStorage.removeItem('search');
+              localStorage.removeItem('userIdlogin');
+              localStorage.removeItem('user');
+              window.location.replace('search.html')
+          }
+                //===========Window Loads
+                //   window.onload=function(){
+                //     //   getUsername();
+                //       if(currentUser==null){
+                //         window.location.replace('Login1.html')
+                //       }
+                //     //   else{
+                //     //       signout.href="javascript:signOut()";
+                //     //   }
+                //   }
+                const db = firebase.firestore();
+      
+
+              //select menu
+              var itemleft=document.querySelector(".itemleft");
+              var click1=document.querySelector(".clickItem1");
+              var click2=document.querySelector(".clickItem2");
+            //   var click3=document.querySelector(".clickItem3");
+              var click4=document.querySelector(".clickItem4");
+              var click5=document.querySelector(".clickItem5");
+              var ctn_main=document.querySelector(".container-main");
+       
+              click2.onclick=()=>{
+                click1.classList.remove("clickItem");
+                click2.classList.add("clickItem");
+                // click3.classList.remove("clickItem");
+                click4.classList.remove("clickItem");
+                click5.classList.remove("clickItem");
+                window.location.replace("user-dashboard.html");
+              }
+              click4.onclick=()=>{
+                click1.classList.remove("clickItem");
+                click2.classList.remove("clickItem");
+                // click3.classList.remove("clickItem");
+                click4.classList.add("clickItem");
+                click5.classList.remove("clickItem");
+                window.location.replace("profile.html");
+              }
+
+              //load top user
+                //Kiểm tra luồng user
+                var currentUser=localStorage.getItem('userIdlogin');
+                // Kiểm tra thông tin user nhập vào và hiện thị data tương ứng với user đó
+                var arrayList=[];
+
+                db.collection("Users/").get().then((querySnapshot) => {
+                  querySnapshot.forEach((doc) => {
+                    //   list=Object.values(doc.data());
+                    //   arrayList=[...arrayList,...list];
+                      list=doc.data();
+                      arrayList.push(list);
+                  });
+                  var all = document.querySelector(".all");
+                 
+                  var paid=0,unpaid=0;
+                //   var listCars = document.querySelector(".list-cars-element");
+                  var htmls="",html,i=0;
+                  arrayList.some((user)=>{
+                    if(currentUser===user.infoUser.email){
+                        client=Object.values(user.client);
+                        client.forEach((user) =>{//
+                            i++;
+                            if(user.state=="Đã Thanh Toán"){
+                                paid++;
+                            }
+                            if(user.state=="Chưa Thanh Toán"){
+                                unpaid++;
+                            }
+                    
+                        });
+                        return true;
+                    }
+                  })
+                  htmls=` <div class="circle-wrap">
+                                    <div class="circle">
+                                            <div class="mask full-1">
+                                            <div class="fill-1"></div>
+                                            </div>
+                                            <div class="mask half">
+                                            <div class="fill-1"></div>
+                                            </div>
+                                            <div class="inside-circle"> ${Math.round((paid/(paid+unpaid))*100)}% </div>
+                                    </div>
+                                </div>`;
+                  all.innerHTML=htmls;
+              });
+
+              //Other User
+              var arrayList=[];
+                  db.collection("Users/").get().then((querySnapshot) => {
+                      console.log("query trên",querySnapshot);
+                  querySnapshot.forEach((doc) => {
+                    //   list=Object.values(doc.data());
+                    //   arrayList=[...arrayList,...list];
+                    list=doc.data();
+                    arrayList.push(list);
+                  });
+                  var list_top_user = document.querySelector(".list-top-user");
+                //   console.log(querySnapshot,"query");
+                    var htmls="",html,i=0,j=0;
+                    var l=0;
+                     arrayList.some((user)=>{
+                         console.log(user);
+                        i++;
+                        l++;
+                        if(l==(arrayList.length/2)+1){
+                            return true;
+                        }
+                        // infoUser=Object.values(user.infoUser);
+                        // console.log(infoUser);
+                          client=Object.values(user.client);
+                        client.forEach(() =>{
+                          j++;
+                          });
+                          html =`
+                                <tr class="get-db-topU">
+                                    <td class="chart2U">${user.infoUser.name}</td>
+                                    <td>${j}</td>
+                                </tr>
+                                `;
+                            htmls+=html;
+                            j=0;
+                        
+                  })    
+                  list_top_user.innerHTML=htmls;
+              });
+
+              //get Test
+              var arrayList=[];
+
+                db.collection("Users/").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    list=doc.data();
+                    arrayList.push(list);
+                });
+                var head_bottom = document.querySelector(".head-bottom");
+                
+                var paid=0,unpaid=0,car=0,bike=0,total_type=0;
+                //   var listCars = document.querySelector(".list-cars-element");
+                var htmls="",html,i=0;
+                arrayList.some((user)=>{
+                    if(currentUser===user.infoUser.email){
+                        client=Object.values(user.client);
+                        client.forEach((user) =>{//
+                            i++;
+                            if(user.state=="Đã Thanh Toán"){
+                                paid++;
+                            }
+                            if(user.state=="Chưa Thanh Toán"){
+                                unpaid++;
+                            }
+                            if(user.type=="Ô tô"){
+                                car++;
+                            }
+                            if(user.type=="Xe Máy"){
+                                bike++;
+                            }
+
+                        });
+                        return true;
+                    }
+                })
+                if(car!==0&&bike!==0) {total_type=2};
+                if(car!==0&&bike===0||car===0&&bike!=0){total_type=1};
+                if(car===0&&bike===0) {total_type=0};
+                htmls=`  <div class="box">
+                            <div class="content-box">
+                                <p>${i}<br/><span>Khách hàng</span></p>
+                            <i class="fa fa-users box-icon"></i>
+                            </div>
+                           </div>
+                            <div class="box">
+                                <div class="content-box">
+                                    <p>${paid}<br/><span>Đã Thanh toán</span></p>
+                                    <i class="fa fa-list box-icon"></i>
+                                </div>
+                            
+                            </div>
+
+                            <div class="box">
+                                <div class="content-box">
+                                    <p>${unpaid}<br/><span>Chưa thanh toán</span></p>
+                                    <i class="fa fa-shopping-bag box-icon"></i>
+                                </div>  
+                            </div>
+                            <div class="box">
+                                <div class="content-box">
+                                    <p>${total_type}<br/>Phương tiện phổ biến<span></span></p>
+                                <i class="fa fa-tasks box-icon" ></i>
+                                </div>
+                                
+                            </div>`;
+                head_bottom.innerHTML=htmls;
+                });
+
+                ////////////////////////
+          
+      </script>
+      <!--  -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+      <script src="./js/chart.js"> </script>
+      <script src="./js/dashboard.js"></script>
+</body>
+</html>

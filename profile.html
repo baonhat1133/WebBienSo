@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/2da1f7c415.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./CSS/profile.css">
+    <link rel="stylesheet" href="./CSS/reset.css">
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/8.9.1/firebase-ui-auth.css" />
+    <title>Document</title>
+</head>
+<body>
+        <div class="leftbox" id="myLeftBox">
+            <div class="logo-Web">
+                <div class="logo-item">
+                    <i class="fas fa-car"></i>
+                </div>
+                <p class="logo-txt"><span style="color:greenyellow;">Web Biển Số</span> </pc>
+            </div>
+            <div class="list-txt">
+                <a href="#" class="itemleft clickItem1"><i class="far fa-chart-bar" id="item-list"></i>Tổng quan </a>
+                <a href="#" class="itemleft clickItem2"><i class="fa fa-users box-icon" id="item-list" style="font-size: 25px;"></i>Khách hàng</a>
+                <!-- <a href="#" class="itemleft clickItem3"><i class="fas fa-search"id="item-list"></i>Tra cứu</a> -->
+                <a href="#" class="itemleft clickItem4 clickItem"><i class="fas fa-user-alt"id="item-list"></i>Profile</a>
+                <a href="#" class="itemleft clickItem5" onclick="event.preventDefault(); signOut()"><i class="fas fa-sign-out-alt"id="item-list"></i>Đăng xuất</a>
+            </div>
+           
+        </div>
+        <div id="main">
+          
+            <div class="head">
+                <div class="left-head">
+                    <h1 class="title-list">Profile</h1>
+                </div>  
+    
+            </div>
+   
+            <br>
+           <div class="profile">
+            <div class="profile-box">
+                <h2 class="title-profile">Thông tin tài khoản</h2>
+                <div class="line"></div>
+                    <table class="info-box">
+                        <!-- Thông tin user -->
+                    </table>
+               
+        </div>
+           </div>
+        </div>
+              <!-- Firebase -->
+      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+   
+      <script>
+
+
+        const firebaseConfig = {
+        apiKey: "AIzaSyCZ1q9PstgO7K9loJnAEEd3TWqevBM3L70",
+        authDomain: "thu-phi-do-xe-29b78.firebaseapp.com",
+        databaseURL: "https://thu-phi-do-xe-29b78-default-rtdb.firebaseio.com",
+        projectId: "thu-phi-do-xe-29b78",
+        storageBucket: "thu-phi-do-xe-29b78.appspot.com",
+        messagingSenderId: "465302228955",
+        appId: "1:465302228955:web:0cec0da7104afd1be261fe",
+        measurementId: "G-CHRVEKR8RS"
+        };
+
+          // Initialize Firebase
+          firebase.initializeApp(firebaseConfig);
+          // Get a reference to the database service
+
+          var currentUser=null;
+          //Function
+
+        /*   function getUsername(){
+              currentUser=JSON.parse(sessionStorage.getItem('user'));
+          } */
+          function signOut(){
+              localStorage.removeItem('search');
+              localStorage.removeItem('userIdlogin');
+              localStorage.removeItem('user');
+              window.location.replace('search.html')
+          }
+    
+                const db = firebase.firestore();
+                 //Kiểm tra luồng user
+                 var currentUser=localStorage.getItem('userIdlogin');
+                // Kiểm tra thông tin user nhập vào và hiện thị data tương ứng với user đó
+                var arrayList=[];
+
+                db.collection("Users/").get().then((querySnapshot) => {
+                  querySnapshot.forEach((doc) => {
+                        list=doc.data();
+                        arrayList.push(list);
+                  });
+                //   console.log(querySnapshot,"query");
+                  arrayList.forEach((user)=>{
+                    if(currentUser==user.infoUser.email){
+                      user.client.imageURL;
+                    }
+                  })
+              });
+
+              //select menu
+              var itemleft=document.querySelector(".itemleft");
+              var click1=document.querySelector(".clickItem1");
+              var click2=document.querySelector(".clickItem2");
+            //   var click3=document.querySelector(".clickItem3");
+              var click4=document.querySelector(".clickItem4");
+              var click5=document.querySelector(".clickItem5");
+              var ctn_main=document.querySelector(".container-main");
+              click1.onclick=()=>{
+                click1.classList.add("clickItem");
+                click2.classList.remove("clickItem");
+                // click3.classList.remove("clickItem");
+                click4.classList.remove("clickItem");
+                click5.classList.remove("clickItem");
+                window.location.replace("dashboard.html");
+              }
+            
+              click2.onclick=()=>{
+                click1.classList.remove("clickItem");
+                click2.classList.add("clickItem");
+                // click3.classList.remove("clickItem");
+                click4.classList.remove("clickItem");
+                click5.classList.remove("clickItem");
+                window.location.replace("user-dashboard.html");
+              }
+              
+                //Kiểm tra luồng user
+                var currentUser=localStorage.getItem('userIdlogin');
+                // Kiểm tra thông tin user nhập vào và hiện thị data tương ứng với user đó
+                var arrayList=[];
+
+                db.collection("Users/").get().then((querySnapshot) => {
+                  querySnapshot.forEach((doc) => {
+                        list=doc.data();
+                        arrayList.push(list);
+                  });
+                  var info_box = document.querySelector(".info-box");
+                  var htmls="",html;
+                  arrayList.some((user)=>{
+                    if(currentUser===user.infoUser.email){
+                        infoUser=Object.values(user.infoUser);
+                        client=Object.values(user.client);
+                        j=0;
+                        client.forEach(()=>{
+                            j++;
+                        })
+                        console.log(user.infoUser,"okelala")
+                        // infoUser.forEach((user) =>{//
+                            html =`
+                                <tr>
+                                    <td class="profile-text">Họ tên:</td>
+                                    <td>&emsp;${user.infoUser.name}</td>
+                                </tr>
+                                <tr>
+                                    <td class="profile-text">Email:</td>
+                                    <td>&emsp;${user.infoUser.email}</td>
+                                </tr>
+                                <tr>
+                                    <td class="profile-text">Vùng:</td>
+                                    <td>&emsp;${user.infoUser.location}</td>
+                                </tr>
+                                <tr>
+                                    <td class="profile-text">UID:</td>
+                                    <td>&emsp;${user.infoUser.userId}</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td class="profile-text">Total Client:</td>
+                                    <td>&emsp;${j}</td>
+                                </tr>
+                                `;
+                            htmls+=html+`<br>`
+                        // });
+                        return true;
+                    }
+                  })
+                  info_box.innerHTML=htmls;
+              });
+              click4.onclick=()=>{
+                click1.classList.remove("clickItem");
+                click2.classList.remove("clickItem");
+                click3.classList.remove("clickItem");
+                click4.classList.add("clickItem");
+                click5.classList.remove("clickItem");
+              }
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+        
+        <script src="./js/chart.js"> </script>
+       
+</body>
+</html>

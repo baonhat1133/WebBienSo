@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/2da1f7c415.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./CSS/user-dashboard.css">
+    <link rel="stylesheet" href="./CSS/reset.css">
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/8.9.1/firebase-ui-auth.css" />
+    <title>Document</title>
+</head>
+<body>
+  <div class="container-body">
+    <div class="leftbox" id="myLeftBox" style="z-index: 5;">
+      <div class="logo-Web">
+          <div class="logo-item">
+              <i class="fas fa-car"></i>
+          </div>
+          <p class="logo-txt"><span style="color:greenyellow;">Web Biển Số</span> </pc>
+      </div>
+      <div class="list-txt">
+          <a href="#" class="itemleft clickItem1"><i class="far fa-chart-bar" class="item-list"></i>Tổng quan </a>
+          <a href="#" class="itemleft clickItem2 clickItem"><i class="fa fa-users box-icon" class="item-list" style="font-size: 25px;"></i>Khách hàng</a>
+          <!-- <a href="#" class="itemleft clickItem3"><i class="fas fa-search"class="item-list"></i>Tra cứu</a> -->
+          <a href="#" class="itemleft clickItem4"><i class="fas fa-user-alt"class="item-list"></i>Profile</a>
+          <a href="#" class="itemleft clickItem5"  onclick="event.preventDefault(); signOut()"><i class="fas fa-sign-out-alt"class="item-list" id="signout"></i>Đăng xuất</a>
+      </div>
+     
+  </div>
+  
+ <!-- main khách hàng -->
+ <div class="container-main" >
+  <div id="main" >
+          <div class="head">
+              <div class="left-head">
+                  <!--  <div class="item-nav"><i class="far fa-chart-bar"></i></div> -->
+                  <h1 class="title-list">Khách hàng</h1>
+              </div>  
+          </div>
+           <div class="line1"></div>   
+          <br>
+          <div id="list-cars">
+              <div class="list-cars-list">
+                  <table class="title-list1">
+                      <tr class="txt-list">
+                          <td>ID</td>
+                          <td>BIỂN KIỂM SOÁT</td>
+                          <td>LOẠI PHƯƠNG TIỆN</td>
+                          <td>TRẠNG THÁI</td>
+                      </tr>
+                  </table>
+                  <!--  <div class="table-cars"> -->
+                  <table class="list-cars-element">
+                
+                  </table>
+
+              </div>
+          </div>
+  </div>
+</div>
+<div class="detailBox" style="display: none;">
+  <div class="profile">
+    <div class="profile-box">
+      <i class="far fa-window-close closeItem" onclick="closeDetail();"></i>
+        <h2 class="title-profile">Thông Tin Chi Tiết </h2>
+        <div class="line"></div>
+            <table class="info-box">
+                <!-- Thông tin user -->
+       
+              </tr>
+            </table>
+       
+  </div>
+   </div>
+
+</div>
+  </div>
+       
+      <!-- Firebase -->
+      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+   
+      <script>
+
+
+        const firebaseConfig = {
+        apiKey: "AIzaSyCZ1q9PstgO7K9loJnAEEd3TWqevBM3L70",
+        authDomain: "thu-phi-do-xe-29b78.firebaseapp.com",
+        databaseURL: "https://thu-phi-do-xe-29b78-default-rtdb.firebaseio.com",
+        projectId: "thu-phi-do-xe-29b78",
+        storageBucket: "thu-phi-do-xe-29b78.appspot.com",
+        messagingSenderId: "465302228955",
+        appId: "1:465302228955:web:0cec0da7104afd1be261fe",
+        measurementId: "G-CHRVEKR8RS"
+        };
+
+          // Initialize Firebase
+          firebase.initializeApp(firebaseConfig);
+          // Get a reference to the database service
+
+          var currentUser=null;
+          //Function
+
+        /*   function getUsername(){
+              currentUser=JSON.parse(sessionStorage.getItem('user'));
+          } */
+          function signOut(){
+              localStorage.removeItem('search');
+              localStorage.removeItem('userIdlogin');
+              localStorage.removeItem('user');
+              window.location.replace('search.html')
+          }
+    
+                // const db = firebase.firestore();
+        /*          //Kiểm tra luồng user
+                 var currentUser=localStorage.getItem('userIdlogin');
+                // Kiểm tra thông tin user nhập vào và hiện thị data tương ứng với user đó
+                var arrayList=[];
+
+                db.collection("users/").get().then((querySnapshot) => {
+                  querySnapshot.forEach((doc) => {
+                      list=Object.values(doc.data());
+                      arrayList=[...arrayList,...list];
+                  });
+                //   console.log(querySnapshot,"query");
+                  arrayList.forEach((user)=>{
+                    if(currentUser==user.infoUser.email){
+                      user.client.imageURL;
+                    }
+                  })
+              }); */
+
+              //select menu
+              var itemleft=document.querySelector(".itemleft");
+              var click1=document.querySelector(".clickItem1");
+              var click2=document.querySelector(".clickItem2");
+              // var click3=document.querySelector(".clickItem3");
+              var click4=document.querySelector(".clickItem4");
+              var click5=document.querySelector(".clickItem5");
+              var ctn_main=document.querySelector(".container-main");
+              click1.onclick=()=>{
+                click1.classList.add("clickItem");
+                click2.classList.remove("clickItem");
+                // click3.classList.remove("clickItem");
+                click4.classList.remove("clickItem");
+                click5.classList.remove("clickItem");
+                window.location.replace("dashboard.html");
+              }
+            
+              click4.onclick=()=>{
+                click1.classList.remove("clickItem");
+                click2.classList.remove("clickItem");
+                // click3.classList.remove("clickItem");
+                click4.classList.add("clickItem");
+                click5.classList.remove("clickItem");
+                window.location.replace("profile.html");
+              }
+              const db = firebase.firestore();
+                //Kiểm tra luồng user
+                var currentUser=localStorage.getItem('userIdlogin');
+                // Kiểm tra thông tin user nhập vào và hiện thị data tương ứng với user đó
+                var arrayList=[];
+                db.collection("Users/").get().then((querySnapshot) => {
+                  querySnapshot.forEach((doc) => {
+                      list=doc.data();
+                      arrayList.push(list);
+                  });
+                  var listCars = document.querySelector(".list-cars-element");
+                  var input1 = document.querySelector('input[type="text"]');
+                  var htmls="",html,i=0;
+                  arrayList.some((user)=>{
+                    if(currentUser===user.infoUser.email){
+                        client=Object.values(user.client);
+                        client.forEach((user) =>{//
+                            i++;
+                            html =`
+                                <tr class="get-db" " >
+                                        <td>${i}</td>
+                                        <td class="txt-list-car car2 ">${user.number}</td>
+                                        <td class="txt-list-car ">${user.type}</td>
+                                        <td class="txt-list-car car4 ">${user.state}</td>
+                                        <td onclick="detailInfo(${i});" name="${i}" class="get-db${i}" data-name="${user.number}"><i class="fas fa-plus-circle"></i></td>
+                                </tr> 
+                                `;
+                            htmls+=html+`<br>`
+                        });
+                      
+                        return true;
+                    }
+                    
+                  })
+
+                  listCars.innerHTML=htmls;
+              });
+                console.log(check,"Check")
+              //Thông tin chi tiết
+              function detailInfo(i){
+                var list_cars=document.getElementById("list-cars");
+                var container_body=document.querySelector(".container-body");
+                var detailBox=document.querySelector(".detailBox");
+                Object.assign(container_body.style,{
+                  position: "fixed",
+                  backgroundColor: "rgba(31, 27, 27, 0.5)",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0
+                });
+                list_cars.style.display="none";
+                detailBox.style.display="block";
+
+                var arrayList=[];
+
+                db.collection("Users/").get().then((querySnapshot) => {
+                  querySnapshot.forEach((doc) => {
+                        list=doc.data();
+                        arrayList.push(list);
+                  });
+                  var info_box = document.querySelector(".info-box");
+                  var number_car = document.querySelector(`.get-db${i}`);
+                  var htmls="",html;
+                  arrayList.some((user)=>{
+                    if(currentUser===user.infoUser.email){
+                        infoUser=Object.values(user.infoUser);
+                        client=Object.values(user.client);
+                        client.forEach((user)=>{
+                            if(user.number===number_car.dataset.name){
+                              html =`
+                                <tr>
+                                    <td class="profile-text">Địa Chỉ:</td>
+                                    <td>${user.address}</td>
+                                </tr>
+                                <tr>
+                                    <td class="profile-text">Ngày:</td>
+                                    <td>${user.date}</td>
+                                </tr>
+                                <tr>
+                                    <td class="profile-text">Biển Số:</td>
+                                    <td>${user.number}</td>
+                                </tr>
+                                <tr>
+                                    <td class="profile-text">Trạng thái:</td>
+                                    <td>${user.state}</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td class="profile-text">Loại Xe:</td>
+                                    <td>${user.type}</td>
+                                </tr>
+                                `;
+                            htmls+=html+`<br>`
+                            }
+                        
+                        })
+                        // });
+                        return true;
+                    }
+                  })
+                  info_box.innerHTML=htmls;
+                });
+              }
+             
+              function closeDetail(){
+                var list_cars=document.getElementById("list-cars");
+                var container_body=document.querySelector(".container-body");
+                var detailBox=document.querySelector(".detailBox");
+                var closeItem=document.querySelector(".closeItem");
+                list_cars.style.display="block";
+                detailBox.style.display="none";
+                Object.assign(container_body.style,{
+                  position: "",
+                  backgroundColor: "",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0
+                });
+              }
+
+              //Load data detail
+          
+      </script>
+      <!--  -->
+
+</body>
+</html>

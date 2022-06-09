@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./CSS/Login1.css">
+    <link rel="stylesheet" href="./CSS/reset.css">
+    <script src="https://kit.fontawesome.com/2da1f7c415.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/8.9.1/firebase-ui-auth.css" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+
+            <form action="" class="form-login">
+                <h1 class="form-heading">ĐĂNG NHẬP</h1>
+
+                <div class="form-group">
+                    <i class="far fa-user"></i>
+                    <input type="text" class="form-input" id="userIdlogin" placeholder="Email" name="username" />
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-key"></i>
+                    <input type="password" class="form-input password" id="passlogin" placeholder="Mật khẩu" name="password" />
+                    <div class="eye">
+                        <i class="far fa-eye"></i>
+                    </div>
+                </div>
+                <div class="form-remember">
+                    <div class="remember-login">
+                        <input type="checkbox" style="cursor: pointer" />
+                        <p>Ghi nhớ đăng nhập</p>
+                    </div>
+                </div>
+                <input type="submit" value="Đăng Nhập" class="form-submit" id="btnSignin" onclick="event.preventDefault(); onClicklogin()" >
+               
+            </form>
+            <div class="pageAuth">
+                <img class="img_pageAuth" src="../WebBienSo/assets/image/image1.png" alt="" />
+
+            </div>
+        </div>
+    </div>
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+    <!-- <script>
+ 
+      
+    </script> -->
+      <!--  -->
+
+    <script src="./js/login.js"></script>
+    
+    <!-- eye -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+    $(document).ready(function() {
+        $(".eye").click(function() {
+            $(this).children("i").toggleClass("far fa-eye-slash far fa-eye ");
+            $(this).toggleClass("open");
+            if ($(this).hasClass("open")) {
+                $(this).prev().attr("type", "text");
+            } else {
+                $(this).prev().attr("type", "password");
+            }
+        });
+    });
+</script>
+</body>
+
+</html>

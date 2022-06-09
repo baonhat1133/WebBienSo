@@ -1,0 +1,257 @@
+body {
+    /* background-image: url(../assets/image/bgr2.jpg); */
+    background-size: cover;
+    overflow: hidden;
+    margin: 0;
+}
+
+.container {
+    background-color: #FFFFFF;
+    max-width: 100%;
+    display: flex;
+    justify-content: flex-end
+}
+
+.leftbox{
+    height: 100%;
+    width: 300px;
+    background-color: #510CC1;  
+    position:fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    transition:0.5s;
+    padding-top:35px;   
+}
+/* .leftbox a:hover{
+    background-color:#370882; 
+    color: rgb(132, 208, 18);
+} */
+.logo-Web{
+    display: flex;
+    border: 1px solid #fff;
+    margin:0px 25px;
+    margin-bottom: 35px;
+   
+}
+.logo-item{
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    font-size: 50px;
+    border: 5px solid #fff;
+    color: #fff;
+    background-color: rgb(132, 208, 18);
+}
+.logo-txt{
+    font-size:25px;
+    font-weight:bold;
+    display:flex;
+    align-items: center;
+}
+.list-txt{
+    display: flex;
+    flex-direction: column;
+    margin-top:200px;
+}
+.list-txt a{
+    text-decoration: none;
+    padding: 15px 0px 15px 25px;
+}
+
+#item-list{
+margin-right:15px;
+font-size: 30px;
+}
+/*  */
+
+.txtSearch {
+    font-size:30px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+#link-search {
+    display: flex;
+    align-items: center;
+}
+
+#link-statis {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.border-txt {
+    /* border-bottom: 3px solid #0CC175; */
+    background-color: #370882;
+    width:100%;
+}
+
+.page-search {
+    width: 80%;
+    margin-top: 20px;
+
+}
+
+.header-page-search {
+    display: flex;
+    justify-content: space-between;
+    margin-top:21px;
+}
+
+
+.title-page-search {
+    display: flex;
+    align-items: center;
+    border-bottom: 3px solid #510CC1;
+    font-size: 24px;
+    font-weight: bold;
+    color: #510CC1;
+    margin-left: 50px;
+}
+
+.filter-e {
+    display: flex;
+    /* justify-content: space-around; */
+    margin-top: 60px;
+    margin-left: 50px;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 80px;
+}
+
+.label-car {
+    display: flex;
+    border: 1px solid black;
+    padding: 10px 0px 10px 15px;
+    border-radius: 5px;
+}
+
+.filter-txt1 {
+    border: 1px solid black;
+    margin-left: 10px;
+    padding: 10px 0px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.filter-txt{
+    color: rgb(65, 63, 63);
+}
+#item-search{
+    color: #757575;
+    padding-right: 20px;
+}
+
+.form-submit-btn {
+    border: 1px solid black;
+    margin-left: 10px;
+    padding: 12px 4px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.list-cars {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.title-list {
+    position: fixed;
+    background-color: #510CC1;
+    margin: 0px 50px;
+    border-radius: 10px;
+    width: 71%;
+    top: 208px;
+}
+
+.txt-list {
+    display: flex;
+    color: #fff;
+    font-size: 18px;
+    justify-content: space-around;
+    padding: 15px 0px;
+}
+
+.get-db {
+    border-bottom: 2px solid #0CC175;
+    display: flex;
+    color:black;
+}
+
+.table-cars {
+    height: 500px;
+    overflow-y: scroll;
+    margin-left: 138px;
+}
+
+.list-cars-element {
+    margin: 0 50px;
+    width: 90%;
+}
+
+.txt-list-car {
+    padding-right: 150px;
+    padding-left: 90px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.car2 {
+    padding-left: 42px;
+}
+
+.car4 {
+    padding-right: 72px;
+}
+
+.list-cars-list {
+    overflow-y: scroll;
+    height: 500px;
+}
+
+.get-db:hover {
+    background-color: yellow;
+    cursor: pointer;
+}
+
+.get-db td{
+    display: block;
+   
+}
+.get-db td:nth-child(1){
+    color:red;
+    display: block;
+    width: 100px;
+    display:flex;
+    justify-content:end;
+    padding-right: 8px;
+    align-items: center;
+}
+.get-db td:nth-child(2){
+    color:red;
+    display: block;
+    width:200px;
+    margin-left:180px;
+    display:flex;
+    justify-content:end;
+    align-items: center;
+}
+.get-db td:nth-child(3){
+    color:red;
+    display: block;
+    width:200px;
+    margin-left:60px;
+    display:flex;
+    align-items: center;
+}
+.get-db td:nth-child(4){
+    color:red;
+    display: block;
+    width:200px;
+    margin-left:75px;
+    display:flex;
+    align-items: center;
+}

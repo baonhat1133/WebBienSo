@@ -1,0 +1,141 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue",;
+}
+.leftbox{
+    height: 100%;
+    width: 300px;
+    background-color: #510CC1;  
+    position:fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    transition:0.5s;
+    padding-top:35px;   
+}
+.leftbox a:hover{
+    background-color:#370882; 
+    color: rgb(132, 208, 18);
+}
+.logo-Web{
+    display: flex;
+    border: 1px solid #fff;
+    margin:0px 25px;
+    margin-bottom: 35px;
+   
+}
+.logo-item{
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    font-size: 50px;
+    border: 5px solid #fff;
+    color: #fff;
+    background-color: rgb(132, 208, 18);
+}
+.logo-txt{
+    font-size:25px;
+    font-weight:bold;
+    display:flex;
+    align-items: center;
+}
+.list-txt{
+    display: flex;
+    flex-direction: column;
+    
+    /* margin-left:25px; */
+    
+}
+.list-txt a{
+    text-decoration: none;
+    padding: 15px 0px 15px 25px;
+}
+.itemleft{
+    font-size:30px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+
+}
+
+#item-list{
+margin-right:15px;
+font-size: 30px;
+}
+#main{
+    padding-left:300px;
+}
+.head{
+    display:flex;
+    justify-content:space-between;
+    margin-left:30px;
+    margin-right:30px;
+
+}
+.left-head{
+    display:flex;
+    
+}
+.item-nav{
+    display:flex;
+    align-items:center;
+    margin-right: 10px;
+    font-size:30px;
+    color: #510CC1; 
+    cursor: pointer;
+    
+}
+.title-list{
+    margin-top: 40px;
+    font-size:30px;
+    font-weight: bold;
+    color: #510CC1; 
+    border-bottom: 3px solid #510CC1;
+}
+.profile{
+    display:flex;
+    justify-content:center;
+}
+.profile-box{
+    width: 400px;
+    height: 500px;
+    background-color: #741dff;
+    color: #fff;
+    border-radius:15px
+    
+}
+.line{
+    border:1px solid #fff;
+}
+
+.profile-text{
+    font-weight: bold;
+  
+}
+.title-profile{
+    text-align: center;
+    margin-top:20px;
+    font-size:25px;
+    font-weight:bold;
+    /* border-bottom:1px solid #fff; */
+}
+.info-box{
+    display:flex;
+    justify-content: center;
+    margin-top:50px;
+    line-height:50px;
+}
+
+/* Firebase */
+.imageURL{
+    width:500px;
+    height:500px;
+    margin-left:300px;
+}
+/* Click menu */
+.clickItem{
+    background-color:#370882; 
+    color: rgb(132, 208, 18);
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./CSS/admin.css" />
+    <link rel="stylesheet" href="./CSS/reset.css">
+    <script src="https://kit.fontawesome.com/2da1f7c415.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="leftbox" id="myLeftBox">
+            <div class="logo-Web">
+                <div class="logo-item">
+                    <i class="fas fa-car"></i>
+                </div>
+                <p class="logo-txt"><span style="color:greenyellow;">Web Biển Số</span> </pc>
+            </div>
+            <nav class="list-txt">
+                <a href="#" id="link-search" class="border-txt add-user-admin" >
+                    <i class="fas fa-search" id="item-list"></i>
+                    <p class="txtSearch">Thêm User</p>
+                </a>
+                <a href="#" id="link-statis" class="list-user-admin">
+                    <i class="fas fa-sign-in-alt" id="item-list"></i>
+                    <p class="txtSearch list-user-admin">Danh Sách User</p>
+                </a>
+                <a href="#" id="link-statis" class="signout-admin">
+                    <i class="fas fa-sign-out-alt" id="item-list"></i>
+                    <p class="txtSearch signout-admin" onclick="event.preventDefault(); signOut()">Đăng xuất</p><!--  -->
+                </a>
+            </nav>
+        </div>
+                <div class="page-search" >
+                    <div class="header-page-search">
+                        <div class="title-page-search ">
+                            <h2>Thêm User</h2>
+                        </div>
+                    </div>  
+                </div>  
+        
+                    <div class="box-register" >
+                        <div class="wrapper">
+                            <form action="" class="form-login">
+                                <h1 class="form-heading ">Thêm User Mới</h1>
+                
+                                <div class="form-title">
+                                    <h3>Thông tin tài khoản</h3>
+                                </div>
+                
+                                <div class="form-reg">
+                                    <label for="userInp">Họ và tên:</label>
+                                    <input type="text" id="userInp" name="uname">
+                                </div>
+                                <div class="form-reg">
+                                    <label for="emailInp">Email:</label>
+                                    <input type="text" id="emailInp" name="email">
+                                </div>
+                                <div class="form-reg">
+                                    <label for="username">UserId   :</label>
+                                    <input type="text" id="username" name="username">
+                                </div>
+                                <div class="form-reg">
+                                    <label for="passInp">Mật Khẩu:</label>
+                                    <input type="password" id="passInp" name="password">
+                                </div>
+                                <!-- <div class="form-reg">
+                                    <label for="repass">Nhập lại mật khẩu:</label>
+                                    <input type="password" id="repass" name="repass">
+                                </div> -->
+                                <div class="form-reg">
+                                    <label for="location">Vùng:</label>
+                                    <select name="" id="location">
+                                        <option value="" id="op1">--Chọn Vùng</option>
+                                        <option value="Đà Nẵng">Đà Nẵng</option>
+                                        <option value="Hà Nội">Hà Nội</option>
+                                        <option value="Sài Gòn">Sài Gòn</option>
+                                    </select>
+                                </div>
+                            
+                                <input type="submit" value="Thêm"class="btn-submit" id="sub_btn" onclick="event.preventDefault(); onClick()" >
+                            </form>
+                        
+                    </div>
+                </div>
+
+                <!-- Load data user Firebase -->
+                <div class="page-search1"style="display:none;" > <!-- style="display:none;" -->
+                    <div class="header-page-search">
+                       <div class="title-page-search ">
+                           <h2>Danh sách User</h2>
+                       </div>
+               </div> 
+               <div class="wrappper-list-admin"style="display:none;">
+                   <div id="list-users">
+                       <div class="list-users-list">
+                           <table class="title-list">
+                               <tr class="txt-list">
+                                   <td>STT</td>
+                                   <td>Name</td>
+                                   <td>Email</td>
+                                   <td>Area</td>
+                                   <td>Active User</td>
+                               </tr>
+                           </table>
+                           <!--  <div class="table-cars"> -->
+                           <table class="list-cars-element">
+                               <!-- load data admin -->
+                         
+       
+                           </table>
+       
+                       </div>
+                   </div>
+               </div>
+    </div>
+
+           <!-- <div class="list-user-admin"> -->
+          
+        <!-- </div> -->
+        <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+       
+        <script>
+            //  var firebaseConfig = {
+            //     apiKey: "AIzaSyCHRUEWCBUcFyqLkFqARDr4FEeulKQmZTo",
+            //     authDomain: "license-plate-e43f5.firebaseapp.com",
+            //     databaseURL: "https://license-plate-e43f5-default-rtdb.firebaseio.com",
+            //     projectId: "license-plate-e43f5",
+            //     storageBucket: "license-plate-e43f5.appspot.com",
+            //     messagingSenderId: "934388900330",
+            //     appId: "1:934388900330:web:7ba5b96935fceab4279293",
+            //     measurementId: "G-6G1VJ3X9ZY"
+            // };
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyCZ1q9PstgO7K9loJnAEEd3TWqevBM3L70",
+                authDomain: "thu-phi-do-xe-29b78.firebaseapp.com",
+                databaseURL: "https://thu-phi-do-xe-29b78-default-rtdb.firebaseio.com",
+                projectId: "thu-phi-do-xe-29b78",
+                storageBucket: "thu-phi-do-xe-29b78.appspot.com",
+                messagingSenderId: "465302228955",
+                appId: "1:465302228955:web:0cec0da7104afd1be261fe",
+                measurementId: "G-CHRVEKR8RS"
+                };
+
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            // Get a reference to the database service
+        </script>
+
+        <script src="./js/admin-firebase.js"></script>
+
+        <!-- <script src="../Project/js/layout2.js"></script> -->
+</body>
+
+
+</html>
